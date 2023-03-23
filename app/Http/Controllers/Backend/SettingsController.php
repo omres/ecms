@@ -33,4 +33,19 @@ class SettingsController extends Controller
 
         return back()->with('error', 'İşlem Başarısız');
     }
+
+    public function edit($id){
+        $settings=Settings::where('id',$id)->first();
+        return view('backend.settings.edit')->with('settings',$settings);
+    }
+
+    public function update(Request $request,$id){
+        $settings=Settings::where('id',$id)->update([
+            "settings_value" => $request->settings_value,
+        ]);
+        if($settings){
+            return back()->with("success","Düzenleme işlemi başarılı");
+        }
+        return back()->with("error","Düzenleme işlemi başarısız");
+    }
 }

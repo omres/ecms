@@ -24,3 +24,5 @@ Route::get('nedmin',[DefaultController::class, 'index'])->name('nedmin.Index');
 Route::get('nedmin/settings',[SettingsController::class, 'index'])->name('nedmin.Settings');
 Route::post('nedmin/sortable',[SettingsController::class, 'sortable'])->name('settings.Sortable');
 Route::get('nedmin/settings/delete/{id}',[SettingsController::class, 'destroy']);
+Route::get('nedmin/settings/edit/{id}',[SettingsController::class, 'edit'])->name('settings.Edit');
+Route::post('nedmin/update/{id}',[SettingsController::class, 'update'])->name('settings.Update');

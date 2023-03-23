@@ -26,9 +26,11 @@
                        <td>{{$adminSettings->settings_value}}</td>
                        <td>{{$adminSettings->settings_key}}</td>
                        <td>{{$adminSettings->settings_type}}</td>
-                       <td width="5"><a href=""><i class="fa fa-pencil-square"></i></a></td>
+                       <td width="5"><a href="{{route('settings.Edit',['id'=>$adminSettings->id])}}"><i class="fa fa-pencil-square"></i></a></td>
                        <td width="5">
-                           @if($adminSettings->settings_delete)<a href=""><i id="@php echo $adminSettings->id @endphp" class="fa fa-trash-o"></i></a>@endif
+                           @if($adminSettings->settings_delete)
+                               <a href="javascript:void(0)"><i id="@php echo $adminSettings->id @endphp" class="fa fa-trash-o"></i></a>
+                           @endif
                        </td>
                    </tr>
                    @endforeach
@@ -69,7 +71,19 @@
         });
 
         $(".fa-trash-o").click(function(){
-            alertify.confirm('<a href="javascript:showAlert();">Show Alert</a>');
+            destroy_id = $(this).attr('id');
+
+            alertify.confirm('Silme işlemini onaylayın!','Bu işlem geri alınamaz',
+
+                function (){
+                    location.href = "/nedmin/settings/delete/" + destroy_id;
+                },
+
+                function () {
+                    alertify.error('Silme işlemi iptal edildi')
+                }
+            )
+
         });
 
     </script>

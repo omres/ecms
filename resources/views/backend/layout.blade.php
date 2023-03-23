@@ -46,6 +46,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -332,5 +334,11 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+@if(session()->has('success'))
+    <script>alertify.success('{{session('success')}}')</script>
+@endif
+@if(session()->has('error'))
+    <script>alertify.error('{{session('error')}}')</script>
+@endif
 </body>
 </html>
