@@ -340,5 +340,10 @@ desired effect
 @if(session()->has('error'))
     <script>alertify.error('{{session('error')}}')</script>
 @endif
+@foreach($errors->all() as $error)
+    <script>
+        alertify.error('{{$error}}');
+    </script>
+@endforeach
 </body>
 </html>

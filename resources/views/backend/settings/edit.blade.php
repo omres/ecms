@@ -21,7 +21,7 @@
                         <label>Resim Seç</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input class="form-control" name="settings_value" type="file">
+                                <input class="form-control" name="settings_value" required type="file">
                             </div>
                         </div>
                     </div>
@@ -39,11 +39,17 @@
                                 @if($settings->settings_type=="ckeditor")
                                     <textarea id="editor1" name="settings_value" class="form-control">{{$settings->settings_value}}</textarea>
                                 @endif
+                                @if($settings->settings_type=="file")
+                                    <img width="100" src="/images/settings/{{$settings->settings_value}}" alt="">
+                                @endif
                                 <script>
                                     CKEDITOR.replace( 'editor1' );
                                 </script>
                             </div>
                         </div>
+                        @if($settings->settings_type=="file")
+                            <input type="hidden" name="old_file" value="{{$settings->settings_value}}">
+                        @endif
                         <div align="right" class="box-footer">
                             <button type="submit" class="btn btn-success">Düzenle</button>
                         </div>
